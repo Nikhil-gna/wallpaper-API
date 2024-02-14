@@ -10,8 +10,14 @@ const imageSchema = new mongoose.Schema({
         required: [true, 'url must be provided']
     },
     size: {
-        type: Number,
-        required: true,
+        width: {
+            type: Number,
+            minimum: 0
+          },
+            height: {
+                type: Number,
+                minimum: 0 
+            },
     },
     tags: {
         type: [String],
@@ -21,9 +27,15 @@ const imageSchema = new mongoose.Schema({
         type: [String],
         required: [true, 'categories must be provided']
     },
+    format: {
+        type: String,
+        required: true
+    },
     created_at: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true,
+        // type: Date,
+        // default: Date.now
     }
 
  // when added auth 

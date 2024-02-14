@@ -9,7 +9,7 @@ const start = async () => {
         await Image.create({
             name: 'image1',
             url: 'https://www.google.com',
-            size: 100,
+            size: { width: 100, height: 100 },
             tags: ['tag1', 'tag2'],
             categories: ['cat1', 'cat2']
         });

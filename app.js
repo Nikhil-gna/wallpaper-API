@@ -7,6 +7,11 @@ const images_routes = require('./routes/images');
 const connectDB = require('./db/connect');
 const multer = require('multer');
 const uploads = multer({ dest: 'uploads/' });
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload({
+    useTempFiles: true
+}));
 
 //setting up multer for storing the images in uploads folder
 const storage = multer.diskStorage({

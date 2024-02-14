@@ -1,0 +1,44 @@
+{
+    "myData": [
+        {
+            "_id": "65ca3c33e39daacde271e7b6",
+            "name": "tangiro",
+            "url": "https://res.cloudinary.com/dq0rchxli/image/upload/v1707896121/demonsalyer_iify9d.jpg",
+            "size": 1280 ,
+            "tags": [
+                "tangiro",
+                "demon slayer",
+                "hd",
+                "desktop"
+            ],
+            "categories": [
+                "anime",
+                "manga",
+                "demon slayer"
+            ],
+            "created_at": "2024-02-12T15:41:39.134Z",
+            "__v": 0
+        },
+        {
+            "_id": "65cc6f461036e7b79503026d",
+            "name": "titan",
+            "url": "https://res.cloudinary.com/dq0rchxli/image/upload/v1707896162/attack-on-titan-2-2018-sv_pxyzgi.jpg",
+            "size": 1280 ,
+            "tags": [
+                "eren",
+                "colossal",
+                "attack on titan",
+                "aot",
+                "4k",
+                "desktop"
+            ],
+            "categories": [
+                "anime",
+                "manga",
+                "attack on titan"
+            ],
+            "created_at": "2024-02-12T15:41:39.134Z",
+            "__v": 0
+        }
+    ]
+}
