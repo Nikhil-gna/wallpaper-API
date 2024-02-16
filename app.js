@@ -31,17 +31,22 @@ const storage = multer.diskStorage({
 app.set("view engine", "ejs");
 
 app.get('/', (req, res) => {
-    res.send('Hello World');
+    // res.send('Hello World');
+    res.render('home');
 });
 
 app.get('/upload', (req, res) => {
     res.render('upload');
 });
-app.post('/upload',upload.single('image'), (req, res) => {
-    res.send('File uploaded');
+// app.post('/upload',upload.single('image'), (req, res) => {
+//     res.send('File uploaded');
+// });
+app.post('/upload', (req, res) => {
+    res.send('File uploaded to database');
+
 });
 
-app.use("/api/images",images_routes);
+app.use("/api",images_routes);
 
 
 const start = async () => {

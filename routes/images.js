@@ -15,18 +15,23 @@ cloudinary.config({
 const {getAllImages,getAllImagesTest} = require("../controllers/images");
 const { create } = require('../models/image');
 
+router.get("/upload",(req,res)=>{
+    res.render('upload');
+});
 
 router.route("/").get(getAllImages);
+router.route("/upload").get(getAllImages);
 router.route("/testing").get(getAllImagesTest);
 
-router.post('/', async (req, res) => {
+
+router.post('/upload', async (req, res) => {
     const file = req.files.photo;
     console.log(file);
     cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
         if (err) {
             console.log(err);
         }
-        res.json(result);
+        // res.json(result);
         try {
             await connectDB(process.env.MONGODB_URI);
             await Image.create({

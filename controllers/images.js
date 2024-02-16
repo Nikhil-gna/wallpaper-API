@@ -2,33 +2,54 @@ const Image = require('../models/image');
 const express = require('express');
 
 const getAllImages = async (req,res) =>{
-    const myData = await Image.find({});
+//search based filter in api
+    const {name,format,tags,categories,sort,select} = req.query;
+    const  queryobj = {};
+    if(format){
+        queryobj.format = { $regex: format, $options: 'i'};
+    }
+    if(name){
+        queryobj.name = { $regex: name, $options: 'i'};
+    }
+    if(tags){
+        queryobj.tags = { $in: tags };
+    }
+    if(categories){
+        queryobj.categories = { $in: categories};
+    }
+
+//adding sorting filter
+    let apidata =Image.find(queryobj);
+
+    if(sort){
+        const sortList = sort.split(",").join(" ");
+        apidata = apidata.sort(sortList);
+        // queryobj.sort = sortList;
+    }
+
+//adding select filter
+
+    if(select){
+        const selectList = select.split(",").join(" ");
+        apidata = apidata.select(selectList);
+    }
+// //pagination
+//     const page = Number(req.query.page) || 1;
+//     const limit = Number(req.query.limit) || 3;
+
+//     const skip = (page-1)*limit;
+//     apidata = apidata.skip(skip).limit(limit);
+
+//getting data from database
+    const myData = await apidata;
+    res.status(200).json({myData,NoOfData:myData.length});
+};
+
+//testing purpose
+const getAllImagesTest = async (req,res) =>{
+    const myData = await Image.find(req.query).select('name url');
+    console.log(req.query);
     res.status(200).json({myData});
 };
 
-const getAllImagesTest = async (req,res) =>{
-    res.status(200).json({msg:"getting all images ( for testing )"});
-};
-
 module.exports= {getAllImages,getAllImagesTest};
-
-// try {
-//     if (req.files === null) {
-//         return res.status(400).json({ msg: 'No file uploaded' });
-//     }
-//     const file = req.files.file;
-//     const result = await cloudinary.uploader.upload(file.tempFilePath);
-//     console.log(result);
-//     const newImage = new Image({
-//         name: file.name,
-//         url: result.secure_url,
-//         size: file.size,
-//         tags: ['tag1', 'tag2'],
-//         categories: ['cat1', 'cat2']
-//     });
-//     const savedImage = await newImage.save();
-//     res.status(201).json({ image: savedImage });
-// } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ msg: 'Server Error' });
-// }
