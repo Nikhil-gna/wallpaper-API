@@ -26,7 +26,7 @@ router.route("/testing").get(getAllImagesTest);
 
 router.post('/upload', async (req, res) => {
     const file = req.files.photo;
-    console.log(file);
+    console.log(file.tempFilePath);
     cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
         if (err) {
             console.log(err);
@@ -43,6 +43,7 @@ router.post('/upload', async (req, res) => {
                 format: result.format,
                 created_at: result.created_at
             });
+            res.render("home");
             console.log('Image created');
         } catch (error) {
             console.log(error);

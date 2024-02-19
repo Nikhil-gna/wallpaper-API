@@ -12,10 +12,11 @@ const getAllImages = async (req,res) =>{
         queryobj.name = { $regex: name, $options: 'i'};
     }
     if(tags){
-        queryobj.tags = { $in: tags };
+        queryobj.tags = {$regex: tags, $options: 'i' };
     }
     if(categories){
-        queryobj.categories = { $in: categories};
+        // queryobj.categories = { $in: categories};
+        queryobj.categories = {$regex: categories, $options: 'i' };
     }
 
 //adding sorting filter
