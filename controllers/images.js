@@ -43,7 +43,7 @@ const getAllImages = async (req,res) =>{
 
 //getting data from database
     const myData = await apidata;
-    res.status(200).json({myData,NoOfData:myData.length});
+    res.status(200).json(myData);
 };
 
 //testing purpose
