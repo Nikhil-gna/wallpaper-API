@@ -51,7 +51,8 @@ const getAllImages = async (req, res) => {
 const getAllImagesTest = async (req, res) => {
   const myData = await Image.find(req.query).select("name url");
   console.log(req.query);
-  res.status(200).json({ myData, NoOfData: myData.length });
+  res.status(200).json(myData);
+  // res.status(200).json({ myData, NoOfData: myData.length });
 };
 
 module.exports = { getAllImages, getAllImagesTest };
