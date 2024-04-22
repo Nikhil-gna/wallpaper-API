@@ -34,7 +34,7 @@ const getAllImages = async (req, res) => {
     const selectList = select.split(",").join(" ");
     apidata = apidata.select(selectList);
   }
-  //pagination
+  // //pagination
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 8;
 
@@ -43,15 +43,29 @@ const getAllImages = async (req, res) => {
 
   //getting data from database
   const myData = await apidata;
+
   res.status(200).json(myData);
   //   res.status(200).json({ myData, NoOfData: myData.length });
 };
 
 //testing purpose
 const getAllImagesTest = async (req, res) => {
-  const myData = await Image.find(req.query).select("name url");
+  //for only imageurl and name
+  // const myData = await Image.find(req.query).select("name url");
+
+  const myData = await Image.find(req.query);
+  //getting unique data
+  const uniqueCategories = new Set();
+  myData.forEach((item) => {
+    item.categories.forEach((category) => {
+      uniqueCategories.add(category);
+    });
+  });
+  const Uniquecategories = Array.from(uniqueCategories);
+
   console.log(req.query);
-  res.status(200).json(myData);
+
+  res.status(200).json({ myData, NoOfData: myData.length, Uniquecategories });
   // res.status(200).json({ myData, NoOfData: myData.length });
 };
 
