@@ -32,21 +32,24 @@ const upload = multer({ storage: storage });
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.send('This site can’t be reached');
-  // res.render("home");
+  // res.send('Hello World');
+  res.render("home");
 });
 
-// app.get("/upload", (req, res) => {
-//   res.render("upload");
+app.get("/upload", (req, res) => {
+  res.render("upload");
+});
+app.get("/policy", (req, res) => {
+  res.render("privacyPolicy");
+});
+// app.post('/upload',upload.single('image'), (req, res) => {
+//     res.send('File uploaded');
 // });
-// app.get("/policy", (req, res) => {
-//   res.render("privacyPolicy");
-// });
-// app.post("/upload", (req, res) => {
-//   res.send("File uploaded to database");
-// });
+app.post("/upload", (req, res) => {
+  res.send("File uploaded to database");
+});
 
-// app.use("/api", images_routes);
+app.use("/api", images_routes);
 
 const start = async () => {
   try {
