@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wallpaper API</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 800px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      color: #333;
-    }
-    p {
-      color: #666;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      margin-bottom: 10px;
-    }
-    a {
-      color: #007bff;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    a:hover {
-      color: #0056b3;
-    }
-
-    /* Responsive Styles */
-    @media screen and (max-width: 600px) {
-      .container {
-        max-width: 100%;
-        margin: 20px;
-        border-radius: 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallpaper API</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>About Wallpaper API</h1>
-    <p>Welcome to the Wallpaper API, where you can access various wallpapers!</p>
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+      }
+      p {
+        color: #666;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+      }
 
-    <h2>Navigation</h2>
-    <ul>
-      <li><a href="/api/">GET</a> - Get all API data from the server</li>
-      <li><a href="/api/upload/">POST</a> - Upload new data to the server</li>
-      <li><a href="/api/testing/">Testing</a> - Testing purposes</li>
-    </ul>
-  </div>
-</body>
+      /* Responsive Styles */
+      @media screen and (max-width: 600px) {
+        .container {
+          max-width: 100%;
+          margin: 20px;
+          border-radius: 0;
+        }
+      }
+    </style>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>About Wallpaper API</h1>
+      <p>
+        Welcome to the Wallpaper API, where you can access various wallpapers!
+      </p>
+
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="/api/">GET</a> - Get all API data from the server</li>
+        <li><a href="/api/upload/">POST</a> - Upload new data to the server</li>
+        <li><a href="/api/testing/">Testing</a> - Testing purposes</li>
+      </ul>
+    </div>
+  </body>
 </html>

@@ -1,93 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload Image</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f0f0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        input[type="file"],
-        input[type="text"],
-        button {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-        input[type="file"]:focus,
-        input[type="text"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .back-btn {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .back-btn a {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .back-btn a:hover {
-            text-decoration: underline;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      input[type="file"],
+      input[type="text"],
+      button {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      input[type="file"]:focus,
+      input[type="text"]:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+      button {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      .back-btn {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .back-btn a {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .back-btn a:hover {
+        text-decoration: underline;
+      }
 
-        @media screen and (max-width: 600px) {
-            .container {
-                margin: 20px;
-                border-radius: 0;
-            }
+      @media screen and (max-width: 600px) {
+        .container {
+          margin: 20px;
+          border-radius: 0;
         }
+      }
     </style>
-</head>
-<body>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </head>
+  <body>
     <div class="container">
-        <div class="back-btn">
-            <a href="/">Back to Home</a>
-        </div>
-        <h1>Upload Image</h1>
-        <form action="/api/upload" method="post" enctype="multipart/form-data">
-            <input type="file" name="photo" id="image" required>
-            <input type="text" placeholder="Name" name="name" required>
-            <input type="text" name="tags" placeholder="Tags of the image" required>
-            <input type="text" name="categories" placeholder="Categories of the image" required>
-            <button type="submit">Upload</button>
-        </form>
-        <div class="back-btn">
-            <a href="/api/">View Data</a>
-        </div>
+      <div class="back-btn">
+        <a href="/">Back to Home</a>
+      </div>
+      <h1>Upload Image</h1>
+      <form action="/api/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="photo" id="image" required />
+        <input type="text" placeholder="Name" name="name" required />
+        <input
+          type="text"
+          name="tags"
+          placeholder="Tags of the image"
+          required
+        />
+        <input
+          type="text"
+          name="categories"
+          placeholder="Categories of the image"
+          required
+        />
+        <button type="submit">Upload</button>
+      </form>
+      <div class="back-btn">
+        <a href="/api/">View Data</a>
+      </div>
     </div>
-</body>
+  </body>
 </html>
