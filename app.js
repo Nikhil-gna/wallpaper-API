@@ -8,11 +8,11 @@ const connectDB = require("./db/connect");
 const fileUpload = require("express-fileupload");
 const { track } = require("@vercel/analytics/server");
 
-// Configure express-fileupload to use /tmp for temporary files
 app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp",
+    limits: { fileSize: 10 * 1024 * 1024 }, // Set the limit to 10 MB
   })
 );
 
@@ -41,14 +41,18 @@ app.post("/upload", (req, res) => {
     user: req.user ? req.user.id : "anonymous",
   });
 
-  // Ensure a file is uploaded
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send("No files were uploaded.");
   }
 
   const file = req.files.uploadedFile;
 
-  // Move the uploaded file to /tmp
+  // Check the file size before processing
+  if (file.size > 10 * 1024 * 1024) {
+    // 10 MB in bytes
+    return res.status(400).send("File size exceeds the 10 MB limit.");
+  }
+
   const uploadPath = path.join("/tmp", file.name);
 
   file.mv(uploadPath, (err) => {
@@ -56,7 +60,6 @@ app.post("/upload", (req, res) => {
       return res.status(500).send(err);
     }
 
-    // Simulate saving the file details to the database
     res.send(`File uploaded to ${uploadPath}`);
   });
 });
