@@ -1,5 +1,7 @@
 require("dotenv").config();
 const express = require("express");
+const nodemailer = require("nodemailer");
+const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 3000;
@@ -7,6 +9,9 @@ const images_routes = require("./routes/images");
 const connectDB = require("./db/connect");
 const fileUpload = require("express-fileupload");
 const { track } = require("@vercel/analytics/server");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(
   fileUpload({
@@ -33,6 +38,36 @@ app.get("/upload", (req, res) => {
 app.get("/policy", (req, res) => {
   track(req, res, "Page View", { path: "/policy" });
   res.render("privacyPolicy");
+});
+app.get("/contact", (req, res) => {
+  res.render("contactus");
+});
+
+app.post("/contact", async (req, res) => {
+  const { name, email, message } = req.body;
+
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  let mailOptions = {
+    from: email,
+    to: "nikhil.animex@gmail.com",
+    subject: `Contact Form Submission from ${name}`,
+    text: `You have a new message from the contact form wallzy.vercel.app :\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    res.json({ success: true, message: "Email sent successfully!" });
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.json({ success: false, message: "Failed to send email." });
+  }
 });
 
 app.post("/upload", (req, res) => {
