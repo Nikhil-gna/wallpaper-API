@@ -56,7 +56,7 @@ app.post("/contact", async (req, res) => {
 
   let mailOptions = {
     from: email,
-    to: "nikhil.animex@gmail.com",
+    to: "swiftandme@gmail.com",
     subject: `Contact Form Submission from ${name}`,
     text: `You have a new message from the contact form wallzy.vercel.app :\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
