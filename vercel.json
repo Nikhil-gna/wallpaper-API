@@ -11,8 +11,5 @@
       "src": "/(.*)",
       "dest": "/app.js"
     }
-  ],
-  "bodyParser": {
-    "sizeLimit": "10mb"
-  }
+  ]
 }
