@@ -2,27 +2,34 @@ require("dotenv").config();
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
-const app = express();
 const path = require("path");
-const port = process.env.PORT || 3000;
-const images_routes = require("./routes/images");
-const connectDB = require("./db/connect");
+const cloudinary = require("cloudinary").v2;
 const fileUpload = require("express-fileupload");
 const { track } = require("@vercel/analytics/server");
+const images_routes = require("./routes/images");
+const connectDB = require("./db/connect");
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(
   fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp",
+    useTempFiles: false, // Disable temp files
     limits: { fileSize: 10 * 1024 * 1024 }, // Set the limit to 10 MB
   })
 );
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 // Define routes
 app.get("/", (req, res) => {
@@ -39,6 +46,7 @@ app.get("/policy", (req, res) => {
   track(req, res, "Page View", { path: "/policy" });
   res.render("privacyPolicy");
 });
+
 app.get("/contact", (req, res) => {
   res.render("contactus");
 });
@@ -70,7 +78,7 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-app.post("/upload", (req, res) => {
+app.post("/upload", async (req, res) => {
   track(req, res, "File Uploaded", {
     file: req.body.fileName,
     user: req.user ? req.user.id : "anonymous",
@@ -88,15 +96,19 @@ app.post("/upload", (req, res) => {
     return res.status(400).send("File size exceeds the 10 MB limit.");
   }
 
-  const uploadPath = path.join("/tmp", file.name);
-
-  file.mv(uploadPath, (err) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-
-    res.send(`File uploaded to ${uploadPath}`);
-  });
+  try {
+    const result = await cloudinary.uploader
+      .upload_stream({ resource_type: "auto" }, (error, result) => {
+        if (error) {
+          return res.status(500).send(error);
+        }
+        res.send(`File uploaded to Cloudinary: ${result.secure_url}`);
+      })
+      .end(file.data); // Upload the file buffer directly
+  } catch (error) {
+    console.error("Error uploading to Cloudinary:", error);
+    res.status(500).send("Error uploading file.");
+  }
 });
 
 // Mount API routes

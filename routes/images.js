@@ -37,51 +37,55 @@ router.post("/upload", async (req, res) => {
   }
 
   // Upload high-quality image without transformations
-  cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).send("Error uploading high-quality image.");
-    }
-
-    const highQualityUrl = result.secure_url;
-
-    // Generate and upload low-quality image
-    cloudinary.uploader.upload(
-      file.tempFilePath,
-      {
-        quality: "auto:low",
-        width: 768,
-        height: 1344,
-        crop: "scale",
-      },
-      async (lowErr, lowResult) => {
-        if (lowErr) {
-          console.log(lowErr);
-          return res.status(500).send("Error uploading low-quality image.");
-        }
-
-        const lowQualityUrl = lowResult.secure_url;
-
-        try {
-          await connectDB(process.env.MONGODB_URI);
-          await Image.create({
-            name: req.body.name,
-            highQualityUrl,
-            lowQualityUrl,
-            size: { width: result.width, height: result.height },
-            categories: req.body.categories,
-            format: result.format,
-            created_at: result.created_at,
-          });
-          res.redirect("/");
-          console.log("Image created");
-        } catch (error) {
-          console.log(error);
-          res.status(500).send("Error saving image data to database.");
-        }
+  cloudinary.uploader
+    .upload_stream({ resource_type: "image" }, async (err, result) => {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Error uploading high-quality image.");
       }
-    );
-  });
+
+      const highQualityUrl = result.secure_url;
+
+      // Generate and upload low-quality image
+      cloudinary.uploader
+        .upload_stream(
+          {
+            resource_type: "image",
+            quality: "auto:low",
+            width: 768,
+            height: 1344,
+            crop: "scale",
+          },
+          async (lowErr, lowResult) => {
+            if (lowErr) {
+              console.log(lowErr);
+              return res.status(500).send("Error uploading low-quality image.");
+            }
+
+            const lowQualityUrl = lowResult.secure_url;
+
+            try {
+              await connectDB(process.env.MONGODB_URI);
+              await Image.create({
+                name: req.body.name,
+                highQualityUrl,
+                lowQualityUrl,
+                size: { width: result.width, height: result.height },
+                categories: req.body.categories,
+                format: result.format,
+                created_at: result.created_at,
+              });
+              res.redirect("/");
+              console.log("Image created");
+            } catch (error) {
+              console.log(error);
+              res.status(500).send("Error saving image data to database.");
+            }
+          }
+        )
+        .end(file.data); // Upload the file buffer directly for low-quality image
+    })
+    .end(file.data); // Upload the file buffer directly for high-quality image
 });
 
 module.exports = router;
