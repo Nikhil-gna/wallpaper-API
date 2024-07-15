@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 3000;
-const images_routes = require("./routes/images");
-const connectDB = require("./db/connect");
+const images_routes = require("../routes/images");
+const connectDB = require("../db/connect");
 const fileUpload = require("express-fileupload");
 const { track } = require("@vercel/analytics/server");
 
