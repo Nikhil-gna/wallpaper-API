@@ -13,6 +13,7 @@ const { track } = require("@vercel/analytics/server");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -23,11 +24,22 @@ app.use(
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+app.use(express.static('public'));
 
 // Define routes
 app.get("/", (req, res) => {
   track(req, res, "Page View", { path: "/" });
   res.render("home");
+});
+
+app.get('/app-ads.txt', (req, res) => {
+  const txtPath= path.join(__dirname, 'public', 'app-ads.txt');
+  fs.readFile(txtPath, 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error reading file');
+    }
+    res.render('index', { textContent: data });
+  });
 });
 
 app.get("/upload", (req, res) => {
