@@ -185,7 +185,7 @@
     </script>
   </body>
 </html> -->
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -342,6 +342,237 @@
   </head>
   <body>
     <video class="video-background" autoplay muted loop>
+      <source
+        src="https://storage.googleapis.com/popshopprod-shop-renderer-assets-q9gk7sc6/themes/assets/74253f59-c16d-4728-9ad6-803da8ffdc5e/assets/hero-video-with-multiple-buttons-1700666646-video-ab4ceb1e95742187fe677bf9070cf092638955e28eec6d5b87a3db7455d9948b.mp4"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="contact-container">
+      <div class="back-btn">
+        <a href="/">Back to Home</a>
+      </div>
+      <h1>Contact Us</h1>
+      <form id="contactForm" class="contact-form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const formData = new FormData(this);
+          const data = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            message: formData.get("message"),
+          };
+
+          try {
+            const response = await fetch("/contact", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+              alert(result.message); // Display success message
+              document.getElementById("contactForm").reset(); // Reset the form
+            } else {
+              alert(result.message); // Display error message
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+          }
+        });
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <style>
+      /* Basic Reset */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Page Background */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background-color: #000;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Video Background */
+      .video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: invert(1);
+        transition: filter 200ms;
+      }
+
+      /* Container Styling */
+      .contact-container {
+        background: rgba(17, 17, 17, 0.9);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 600px;
+        transition: transform 0.3s ease;
+        z-index: 1;
+      }
+
+      .contact-container:hover {
+        transform: translateY(-5px);
+      }
+
+      /* Form Styling */
+      .contact-form .form-group {
+        margin-bottom: 15px;
+      }
+
+      .contact-form .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffcc00;
+      }
+
+      .back-btn {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .back-btn a {
+        color: #ffcc00;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .back-btn a:hover {
+        color: #fff;
+      }
+
+      .contact-form .form-group input,
+      .contact-form .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        font-size: 1rem;
+        background: #222;
+        color: #fff;
+        transition: border 0.3s ease, background 0.3s ease;
+      }
+
+      .contact-form .form-group input:focus,
+      .contact-form .form-group textarea:focus {
+        border: 1px solid #ffcc00;
+        background: #333;
+      }
+
+      /* Button Styling */
+      .contact-form button {
+        background: #ffcc00;
+        color: #000;
+        padding: 12px 24px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        width: 100%;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+      }
+
+      .contact-form button:hover {
+        background: #000;
+        color: #ffcc00;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        .contact-container {
+          padding: 15px;
+        }
+
+        .contact-form .form-group label {
+          font-size: 0.9rem;
+        }
+
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+          padding: 10px;
+          font-size: 0.9rem;
+        }
+
+        .contact-form button {
+          padding: 10px;
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video
+      class="video-background"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="path/to/poster.jpg"
+    >
       <source
         src="https://storage.googleapis.com/popshopprod-shop-renderer-assets-q9gk7sc6/themes/assets/74253f59-c16d-4728-9ad6-803da8ffdc5e/assets/hero-video-with-multiple-buttons-1700666646-video-ab4ceb1e95742187fe677bf9070cf092638955e28eec6d5b87a3db7455d9948b.mp4"
         type="video/mp4"
