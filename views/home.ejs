@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wallzyi</title>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -115,7 +116,7 @@
         justify-content: center;
         flex-wrap: wrap;
         gap: 20px;
-        margin-top: 20px;
+        margin-top: 40px;
       }
 
       .hero-images img {
@@ -194,7 +195,6 @@
         max-width: 400px;
         height: auto;
         border-radius: 20px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease;
       }
 
@@ -205,14 +205,7 @@
   </head>
   <body>
     <header class="hero">
-      <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        poster="path/to/poster.jpg"
-      >
+      <video class="hero-video" autoplay muted loop playsinline>
         <source
           src="https://storage.googleapis.com/popshopprod-shop-renderer-assets-q9gk7sc6/themes/assets/74253f59-c16d-4728-9ad6-803da8ffdc5e/assets/hero-video-with-multiple-buttons-1700666646-video-ab4ceb1e95742187fe677bf9070cf092638955e28eec6d5b87a3db7455d9948b.mp4"
           type="video/mp4"
@@ -245,7 +238,7 @@
         </div>
         <div class="hero-images">
           <img
-            src="https://res.cloudinary.com/dq0rchxli/image/upload/q_10/v1722342955/samples/wallzyiLogo_jnijsq.png"
+            src="https://res.cloudinary.com/dq0rchxli/image/upload/q_20/v1722579432/samples/wallzyiLogo_mqhl0j.png"
             alt="Screenshot 2"
             class="animate__animated animate__fadeInRight animate__delay-3s"
           />
@@ -287,7 +280,7 @@
       <div class="container">
         <div class="contact-content">
           <img
-            src="https://res.cloudinary.com/dq0rchxli/image/upload/v1722342936/samples/MockUp_1-removebg-preview_wukwkw.png"
+            src="https://res.cloudinary.com/dq0rchxli/image/upload/q_20/v1722578823/samples/MockUp_1-removebg-preview_upscayl_4x_realesrgan-x4plus.jpg_sgffjk.png"
             alt="Contact Us"
             class="animate__animated animate__fadeInLeft"
           />
@@ -341,278 +334,3 @@
     </script>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wallzyi - Your Ultimate Wallpaper App</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <style>
-      :root {
-        --primary-color: #ffcc00;
-        --secondary-color: #000;
-        --text-color: #fff;
-      }
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: var(--secondary-color);
-        color: var(--text-color);
-        text-align: center;
-        line-height: 1.6;
-      }
-
-      .container {
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-
-      header.hero {
-        background: linear-gradient(45deg, #000, #222);
-        padding: 60px 0;
-      }
-
-      .hero-content {
-        margin-bottom: 40px;
-      }
-
-      .hero-content h1 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        margin-bottom: 20px;
-        color: var(--primary-color);
-      }
-
-      .hero-content p {
-        font-size: clamp(1rem, 3vw, 1.2rem);
-        margin-bottom: 30px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .btn-download {
-        background: var(--primary-color);
-        color: var(--secondary-color);
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 50px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
-      }
-
-      .btn-download:hover {
-        background: #e6b800;
-        color: var(--text-color);
-        transform: translateY(-3px);
-        box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
-      }
-
-      .app-store-icon {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-      }
-
-      @media (max-width: 480px) {
-        .btn-download {
-          padding: 10px 20px;
-        }
-
-        .app-store-icon {
-          width: 20px;
-          height: 20px;
-        }
-      }
-
-      .hero-images {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        max-width: 600px;
-      }
-
-      .hero-images img {
-        position: absolute;
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        border-radius: 20px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s ease;
-      }
-
-      .hero-images img:nth-child(1) {
-        z-index: 2; /* Top image */
-        left: 0;
-        top: 0;
-      }
-
-      .hero-images img:nth-child(2) {
-        z-index: 1; /* Bottom image */
-        left: 20px;
-        top: 20px;
-      }
-
-      .hero-images img:hover {
-        transform: scale(1.05);
-      }
-
-      section {
-        padding: 60px 0;
-        background: linear-gradient(45deg, #111, #222);
-      }
-
-      section h2 {
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-        margin-bottom: 20px;
-        color: var(--primary-color);
-      }
-
-      section p {
-        font-size: clamp(0.9rem, 2vw, 1.1rem);
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      footer {
-        background: #111;
-        padding: 20px 0;
-      }
-
-      footer p {
-        margin: 0;
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 768px) {
-        .hero-images {
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="animate__animated animate__fadeInDown">
-            Welcome to Wallzyi
-          </h1>
-          <p class="animate__animated animate__fadeInUp animate__delay-1s">
-            Discover and download stunning wallpapers for your iOS device
-          </p>
-          <a
-            href="https://apps.apple.com/in/app/wallzyi/id6523413546"
-            class="btn-download animate__animated animate__bounceIn animate__delay-2s"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg
-              class="app-store-icon"
-              viewBox="0 0 170 170"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.197-2.12-9.973-3.17-14.34-3.17-4.58 0-9.492 1.05-14.746 3.17-5.262 2.13-9.501 3.24-12.742 3.35-4.929 0.21-9.842-1.96-14.746-6.52-3.13-2.73-7.045-7.41-11.735-14.04-5.032-7.08-9.169-15.29-12.41-24.65-3.471-10.11-5.211-19.9-5.211-29.378 0-10.857 2.346-20.221 7.045-28.068 3.693-6.303 8.606-11.275 14.755-14.925s12.793-5.51 19.948-5.629c3.915 0 9.049 1.211 15.429 3.591 6.362 2.388 10.447 3.599 12.238 3.599 1.339 0 5.877-1.416 13.57-4.239 7.275-2.618 13.415-3.702 18.445-3.275 13.63 1.1 23.87 6.473 30.68 16.153-12.19 7.386-18.22 17.731-18.1 31.002 0.11 10.337 3.86 18.939 11.23 25.769 3.34 3.17 7.07 5.62 11.22 7.36-0.9 2.61-1.85 5.11-2.86 7.51zM119.11 7.24c0 8.102-2.96 15.667-8.86 22.669-7.12 8.324-15.732 13.134-25.071 12.375-0.119-0.972-0.188-1.995-0.188-3.07 0-7.778 3.386-16.102 9.399-22.908 3.002-3.446 6.82-6.311 11.45-8.597 4.62-2.252 8.99-3.497 13.1-3.71 0.12 1.083 0.17 2.17 0.17 3.24z"
-              />
-            </svg>
-            Download Now
-          </a>
-        </div>
-        <div class="hero-images">
-          <img
-            src="/export67AEC282-5AE7-434B-ADF2-C47E8FE404F2_Background_Removed.png"
-            alt="Screenshot 2"
-            class="animate__animated animate__fadeInRight animate__delay-3s"
-          />
-          <img
-            src="/homescreen_Background_Removed.png"
-            alt="Screenshot 1"
-            class="animate__animated animate__fadeInLeft animate__delay-3s"
-          />
-        </div>
-      </div>
-    </header>
-
-    <section class="features animate__animated animate__fadeIn">
-      <div class="container">
-        <h2>2000+ High-Quality Images</h2>
-        <p>
-          Browse our extensive collection of high-quality wallpapers,
-          meticulously curated for your iOS device.
-        </p>
-      </div>
-    </section>
-
-    <section class="categories animate__animated animate__fadeIn">
-      <div class="container">
-        <h2>20+ Categories</h2>
-        <p>
-          Explore wallpapers in over 20 different categories, from nature and
-          abstract to technology and more.
-        </p>
-      </div>
-    </section>
-
-    <section class="copyright-free animate__animated animate__fadeIn">
-      <div class="container">
-        <h2>Copyright-Free Wallpapers</h2>
-        <p>
-          All wallpapers are copyright-free and ready for you to download and
-          use without any restrictions.
-        </p>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2024 Wallzyi. All rights reserved.</p>
-      </div>
-    </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow.js/1.1.2/wow.min.js"></script>
-    <script>
-      new WOW().init();
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.1,
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add(
-                "animate__animated",
-                "animate__fadeIn"
-              );
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll("section").forEach((section) => {
-          observer.observe(section);
-        });
-      });
-    </script>
-  </body>
-</html> -->
